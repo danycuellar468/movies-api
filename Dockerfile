@@ -4,6 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=1
 
+ENV PORT=8000
+
 WORKDIR /app
 
 RUN pip install fastapi "uvicorn[standard]"
@@ -11,4 +13,4 @@ RUN pip install fastapi "uvicorn[standard]"
 COPY app.py /app/app.py
 
 EXPOSE 8000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh","-c","uvicorn app:app --host 0.0.0.0 --port ${PORT}"]
